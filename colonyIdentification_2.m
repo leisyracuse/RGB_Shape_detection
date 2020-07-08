@@ -1,27 +1,22 @@
 % colonyIdentification_2.m
-% 
+% modified 2020/07/08 
 
-%[X,map] = imread('1.tif');
-%if ~isempty(map)
-%    RGB_Picture = ind2rgb(X,map);
-%end
-%imshow(RGB_Picture);
-
-RGB_Picture = imread('3.jpg'); % read picture
-RGB_Picture_2 = RGB_Picture(:,:,1:3)
-imshow(RGB_Picture_2);       % show what you read
+RGB_Picture = imread('test_pic.png'); % read picture
+imshow(RGB_Picture);       % show what you read
 
 % Get RGB Value
 RGB_Picture_R = RGB_Picture(:,:,1);
 RGB_Picture_G = RGB_Picture(:,:,2);
 RGB_Picture_B = RGB_Picture(:,:,3);
 
+Gray_Picture=rgb2gray(RGB_Picture);
+
 % Show R,G,B,Original Picture
 figure('Name','RGB and Oringinal Pictures');
-subplot(2,2,1),imshow(RGB_Picture_R),title('Red component');
-subplot(2,2,2),imshow(RGB_Picture_G),title('Green component');
-subplot(2,2,3),imshow(RGB_Picture_B),title('Blue component');
-subplot(2,2,4),imshow(RGB_Picture_2),title('Original Picture');
+subplot(2,2,1),imshow(imsubtract(RGB_Picture_R,Gray_Picture)),title('Red component');
+subplot(2,2,2),imshow(imsubtract(RGB_Picture_G,Gray_Picture)),title('Green component');
+subplot(2,2,3),imshow(imsubtract(RGB_Picture_B,Gray_Picture)),title('Blue component');
+subplot(2,2,4),imshow(RGB_Picture),title('Original Picture');
 
 % Change Picture format
 
